@@ -2,6 +2,8 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import { constantRouterMap } from '@/config/router.config';
 
+import guard from './guard';
+
 // hack router push callback
 const originalPush = Router.prototype.push;
 Router.prototype.push = function push(location, onResolve, onReject) {
@@ -11,8 +13,12 @@ Router.prototype.push = function push(location, onResolve, onReject) {
 
 Vue.use(Router);
 
-export default new Router({
-  // mode: 'history',
+const router = new Router({
+  mode: 'history',
   scrollBehavior: () => ({ y: 0 }),
   routes: constantRouterMap
 });
+
+guard(router);
+
+export default router;

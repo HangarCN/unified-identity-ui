@@ -132,7 +132,19 @@ export const constantRouterMap = [
       }
     ]
   },
-
+  {
+    path: '/login',
+    component: UserLayout,
+    redirect: '/login/authorization-code',
+    hidden: true,
+    children: [
+      {
+        path: 'authorization-code',
+        name: 'authorizationCode',
+        component: () => import('@/views/login/AuthorizationCode')
+      }
+    ]
+  },
   {
     path: '/403',
     component: () => import('@/views/exception/403')
