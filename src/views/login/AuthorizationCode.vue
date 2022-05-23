@@ -11,7 +11,6 @@ import { loginByAuthorizationCode } from '@/api/auth';
 
 export default {
   created() {
-    console.log('授权码登录');
     if (!has(this.$route, 'query.code')) {
       this.$router.push({ path: '/user/login' });
     }
