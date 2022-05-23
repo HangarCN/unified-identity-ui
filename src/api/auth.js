@@ -4,12 +4,14 @@
 import qs from 'qs';
 import { request, getDomain } from '@/api';
 
+// 授权码模式登录
+
 /**
  * 是否授权码模式
  * @returns 结果
  */
 const isAuthorizationCode = () => {
-  return process.env.VUE_APP_AUTHORIZATION_TYPE === 'authorization_code';
+  return process.env.VUE_APP_AUTHORIZATION_GRANT_TYPE === 'authorization_code';
 };
 
 /**
@@ -40,6 +42,14 @@ const loginByAuthorizationCode = (code) => {
   return request('post', process.env.VUE_APP_TOKEN_URL, null, data, {});
 };
 
+// 密码模式登录
+
+/**
+ * 用户名密码登录
+ * @param {string} username 用户名
+ * @param {string} password 密码
+ * @returns 登录请求结果
+ */
 const loginByUsername = (username, password) => {
   const data = {
     username: username,
@@ -52,6 +62,11 @@ const loginByUsername = (username, password) => {
   return request('post', getDomain() + process.env.VUE_APP_TOKEN_URL, body, data, {});
 };
 
+/**
+ * 登出
+ * @param {string} token token
+ * @returns 登出请求结果
+ */
 const logout = (token) => {
   const data = {
     access_token: token,

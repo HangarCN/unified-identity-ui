@@ -542,7 +542,6 @@ export default {
       this.searchParameters.searchCreateDateBegin = dateString[0];
       this.searchParameters.searchCreateDateEnd = dateString[1];
     },
-
     /**
      * @description: 重置搜索条件
      */
